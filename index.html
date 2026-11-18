@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unit 11 – Comparing things</title>
+<style>
+:root{color-scheme:light dark;--bg:#f6f2fc;--card:#fff;--tx:#1e1a2b;--mu:#675f7d;--ac:#6b3fbf;--ac2:#ece4fa;--ok:#14733f;--okb:#d9f3e4;--bad:#b3261e;--badb:#fde3e0;--bd:#d6cbee;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--bg:#16121f;--card:#211b30;--tx:#f0ecf9;--mu:#a69dbd;--ac:#b794f6;--ac2:#33284d;--ok:#6fdc9b;--okb:#17382a;--bad:#ff8d85;--badb:#47201f;--bd:#3d3357}}
+:root[data-theme=dark]{color-scheme:dark;--bg:#16121f;--card:#211b30;--tx:#f0ecf9;--mu:#a69dbd;--ac:#b794f6;--ac2:#33284d;--ok:#6fdc9b;--okb:#17382a;--bad:#ff8d85;--badb:#47201f;--bd:#3d3357}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:20px/1.6 Georgia,"Times New Roman",serif}
+header{padding:18px 28px 6px}
+h1{margin:0;font:700 30px/1.2 system-ui,sans-serif;color:var(--ac)}
+.sub{color:var(--mu);font:16px system-ui,sans-serif}
+#nav{display:flex;flex-wrap:wrap;gap:8px;padding:10px 28px}
+button{font:600 18px system-ui,sans-serif;cursor:pointer;border:2px solid var(--bd);background:var(--card);color:var(--tx);border-radius:10px;padding:8px 18px}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.tab.on,.opt.on{background:var(--ac);border-color:var(--ac);color:var(--bg)}
+main{max-width:1000px;margin:8px auto 40px;padding:0 20px}
+.card{background:var(--card);border:2px solid var(--bd);border-radius:14px;padding:22px 28px}
+h2{margin:0 0 4px;font:700 24px system-ui,sans-serif}
+.q{margin:0 0 14px;font-weight:700}
+.bank{display:flex;flex-wrap:wrap;gap:8px;background:var(--ac2);padding:10px 14px;border-radius:10px;margin-bottom:14px}
+.bank span{font-style:italic}
+.ref{background:var(--ac2);border-radius:10px;padding:10px 16px;margin-bottom:14px;font-size:18px}
+.ref table{border-collapse:collapse;font:16px system-ui,sans-serif}.ref td,.ref th{border:1px solid var(--bd);padding:2px 10px}
+.g h3{font:700 22px system-ui,sans-serif;color:var(--ac);margin:.9em 0 .2em}.g h3:first-child{margin-top:0}
+.g p.ex{color:var(--ac);font-style:italic;margin:.2em 0 .9em 1.2em}.g ul{margin:.3em 0;padding-left:1.3em}
+.g table{border-collapse:collapse;width:100%;font:18px/1.4 system-ui,sans-serif;margin:.5em 0 1em}.g td,.g th{border:1px solid var(--bd);padding:7px 10px;text-align:left;vertical-align:top}.g th{background:var(--ac2)}
+.g .warn{background:var(--badb);border-radius:8px;padding:6px 12px}
+.ln{margin:.5em 0}
+input[type=text]{font:inherit;width:11em;padding:2px 8px;border:2px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx)}
+input.w{width:19em}
+input.ok{border-color:var(--ok);background:var(--okb)}input.bad{border-color:var(--bad);background:var(--badb)}
+.fix{color:var(--ok);font:600 16px system-ui,sans-serif;margin-left:6px}
+.hint{color:var(--mu);font-size:17px}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:.5em 0;padding:4px 8px;border-radius:8px}
+.row.ok{background:var(--okb)}.row.bad{background:var(--badb)}
+.row .t{flex:1 1 360px}
+.opt{padding:4px 14px;font-size:17px}
+.opt.right{border-color:var(--ok);box-shadow:0 0 0 2px var(--ok)}.opt.wrong{border-color:var(--bad);text-decoration:line-through}
+.note{flex-basis:100%;color:var(--ok);font:600 17px system-ui,sans-serif}
+.bar{display:flex;align-items:center;gap:14px;margin-top:20px}
+.pri{background:var(--ac);border-color:var(--ac);color:var(--bg)}
+#sc{font:700 22px system-ui,sans-serif}
+img{max-width:100%;height:auto;border-radius:8px;margin:0 0 14px}audio{width:100%;margin:0 0 14px}
+textarea.o{width:100%;box-sizing:border-box;font:16px/1.5 system-ui,sans-serif;padding:10px;border:2px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx)}
+.start{max-width:520px;margin:30px auto}.start label{display:block;margin:14px 0 4px;font:600 18px system-ui,sans-serif}.start input[type=text]{width:100%;box-sizing:border-box}
+</style></head><body>
+<header><h1>Unit 11 · Comparing things</h1><div class="sub">Cambridge Grammar for IELTS · comparatives and superlatives</div></header>
+<nav id="nav"></nav><main><div class="card" id="main"></div></main>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const nz=s=>s.toLowerCase().replace(/[().,]/g,'').replace(/\s+/g,' ').trim();
+const med=[["United States",35,39,29,103],["China",32,17,14,63],["Russia",27,27,38,92],["Australia",17,16,16,49],["Japan",16,9,12,37],["Germany",14,16,18,48],["France",11,9,13,33],["Italy",10,11,11,32],["South Korea",9,12,9,30],["Great Britain",9,9,12,30]];
+const medT=`<table><tr><th>Rank</th><th>Country</th><th>Gold</th><th>Silver</th><th>Bronze</th><th>Total</th></tr>${med.map((r,i)=>`<tr><td>${i+1}</td>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</table>`;
+const E=[
+{id:'A1',type:'sort',img:'a1-athletes',audio:1,t:'A1 · Young or older athletes?',q:'Which phrases would you associate with young athletes, and which with older athletes?',items:['breaking records','peak fitness','Olympics','strongest in the world','physical improvement','complete a marathon','greatest increases in speed','four minutes quicker each year','set record running times']},
+{id:'A3',type:'tf',audio:1,t:'A3 · True or false?',q:'Listen again. Say whether the sentences are true or false, then correct the false ones.',items:[
+['Older athletes are getting faster and fitter.',1,''],
+['Runners aged 50+ are speeding up less rapidly than young runners.',0,'Runners aged 50+ are speeding up more rapidly than young runners.'],
+['Women aged 60–68 running the New York marathon run on average two minutes faster each year.',0,'…run on average four minutes faster each year.'],
+['Older athletes are less likely to achieve their peak fitness than younger athletes.',0,'Older athletes are just as likely to achieve their peak fitness as younger athletes.'],
+['People grow weaker because they are less active than when they were younger.',1,'']]},
+{id:'A4',type:'multi',t:'A4 · Language of comparison',q:'Look at the language used to compare in Exercise 3 (sentences 1–5).',qs:[
+['Which sentences contain adjectives?',['1','2','3','4','5'],['1','4','5'],'Sentence 1 (fitter, faster), 4 (likely, younger), 5 (weaker, active, younger)'],
+['Which sentences contain adverbs?',['1','2','3','4','5'],['2','3'],'Sentence 2 (rapidly), sentence 3 (faster)'],
+['Which word is used as both an adjective and an adverb?',['faster','fitter','likely','rapidly'],['faster'],'Faster']]},
+{id:'B1',type:'info',t:'B · Grammar 1: Comparing adjectives',q:'',html:`<table><tr><th>adjective</th><th>comparative</th><th>superlative</th></tr>
+<tr><td>one syllable: <i>hard</i></td><td>adjective + <i>-er</i>: <i>harder</i></td><td><i>the</i> + adjective + <i>-est</i>: <i>the hardest</i></td></tr>
+<tr><td>one syllable ending in <i>-e</i>: <i>nice</i></td><td>adjective + <i>-r</i>: <i>nicer</i></td><td><i>the</i> + adjective + <i>-st</i>: <i>the nicest</i></td></tr>
+<tr><td>one syllable ending in vowel + consonant: <i>fat</i></td><td>adjective with last consonant doubled + <i>er</i>: <i>fatter</i></td><td><i>the</i> + adjective + consonant doubled + <i>-est</i>: <i>the fattest</i></td></tr>
+<tr><td>two syllables ending in <i>-y</i>: <i>happy</i></td><td>adjective <i>-y</i> + <i>ier</i>: <i>happier</i></td><td><i>the</i> + adjective <i>-y</i> + <i>iest</i>: <i>the happiest</i></td></tr>
+<tr><td>two or more syllables: <i>enjoyable</i></td><td><i>more</i> + adjective: <i>more enjoyable</i></td><td><i>the most</i> + adjective: <i>the most enjoyable</i></td></tr>
+<tr><td>Irregular: <i>good, bad, far</i></td><td><i>better, worse, further/farther</i></td><td><i>the best, the worst, the furthest/farthest</i></td></tr></table>
+<h3>Comparative adjectives</h3><p>We use comparative adjectives to compare two or more things, people or places:</p><p class=ex>Younger runners will always be <b>faster</b> than older runners.</p>
+<p>or the same thing, person or place at two different times:</p><p class=ex>I’m much <b>fitter</b> than I was last year.</p>
+<p>We use <i>than</i> after comparative adjectives to say what we are comparing something with. Sometimes we leave out the <i>than</i>-clause if it is clear from the context what we are comparing something with:</p><p class=ex>Older athletes are getting <b>faster and fitter</b>. (than in the past)</p>
+<h3>Superlative adjectives</h3><p>We use superlative adjectives to compare one thing in a group with all the others in that group:</p><p class=ex>The Olympics is probably <b>the most exciting</b> sports event in the sports calendar.</p>
+<p>We can modify superlatives with</p><ul><li><i>one of the / some of the</i> + superlative + plural noun:</li></ul><p class=ex>It’s one of the few chances we get to see <b>some of the best athletes</b> in the world competing against each other.<br>Tamsin is <b>one of the most generous people</b> I know.</p>
+<ul><li>ordinal numbers:</li></ul><p class=ex>Our team was <b>the third best</b> in the competition.</p>
+<p>We can replace <i>the</i> with a possessive:</p><p class=ex><b>my</b> best friend<br><b>his</b> greatest achievement</p>`},
+{id:'B2',type:'info',t:'B · Grammar 2: Comparing adverbs',q:'',html:`<p>We can compare how things are done by using <i>more/most</i> + adverb:</p><p class=ex>Runners aged 50 and over are speeding up <b>more rapidly</b> than younger people.<br>Women aged 60 to 68 improved <b>the most markedly</b>.</p>
+<p>Adverbs that have the same form as the adjective (e.g. <i>hard, fast, straight, late, early, quick</i>) add <i>-er/-est</i>:</p><p class=ex>Women aged 60 to 68 run on average four minutes <b>faster</b> each year.</p>
+<p>There are some irregular adverbs (e.g. <i>well, better, best; badly, worse, worst; far, further, furthest; little, less, least</i>):</p><p class=ex>I did <b>worse</b> than I had expected in the exam, so I was disappointed.</p>`},
+{id:'B3',type:'info',t:'B · Grammar 3: Other ways of comparing',q:'',html:`<p>We use <i>less/the least</i> to mean the opposite of <i>more/the most</i>:</p><p class=ex>You might imagine that the Masters Games would be <b>less exciting</b> to watch.<br>That was probably <b>the least enjoyable</b> meal I’ve ever had!</p>
+<h3>We can add emphasis</h3><ul><li>with words like <i>even, far, a great deal, a little, a lot, much</i> + comparative:</li></ul><p class=ex>Older women showed <b>much greater</b> increases in speed than expected.</p>
+<ul><li>in formal English with words like <i>slightly, considerably, significantly</i> + comparative:</li></ul><p class=ex>The figures for 2003 were <b>significantly higher</b> than those for the year 2000.<br>The number of women in higher education was <b>only slightly lower</b> than the number of men.</p>
+<p class=warn>⚠ We cannot use <i>very</i> with comparatives (not <s>the number of women was very lower</s>).</p>
+<h3>The same or similar</h3><p>We can say two things are the same or similar with <i>as</i> + adjective/adverb + <i>as</i>:</p><p class=ex>My car is <b>as old as</b> yours. (= the two cars are the same age)<br>Older athletes are <b>as likely</b> to achieve their peak fitness <b>as</b> younger athletes. (= they have the same chance of achieving this)</p>
+<p>We can add to the meaning by using <i>just, almost, nearly, half, twice, three times</i> etc.:</p><p class=ex>In 2005, our team was <b>almost as successful as</b> in 2003.<br>He can run <b>twice as fast as</b> the others in his team.</p>
+<h3>Different</h3><p>We can say two things are different with <i>not as</i> + adjective/adverb + <i>as</i>:</p><p class=ex>While they may <b>not be as fast as</b> their younger counterparts ...</p>
+<h3>Change over time</h3><p>We can show that a change is happening over time by repeating the comparative:</p><p class=ex>Each year athletes seem to be getting <b>better and better</b>.<br>Our atmosphere is gradually becoming <b>more and more polluted</b>.<br>It seems <b>less and less likely</b> that there will be a general election this year.</p>
+<p>We use <i>the</i> + comparative + <i>the</i> + comparative to show that two things vary or change at the same time:</p><p class=ex>It would seem that <b>the longer</b> athletes keep competing <b>the greater</b> their chances of setting new records are.<br><b>The sooner the better.</b></p>`},
+{id:'B4',type:'info',t:'B · Grammar 4: Comparing quantities',q:'',html:`<table><tr><th>quantifier</th><th>comparative</th><th>superlative</th></tr>
+<tr><td><i>a lot / much / many</i></td><td><i>more</i></td><td><i>the most</i></td></tr>
+<tr><td><i>a few</i></td><td><i>fewer</i> (+ plural countable noun)</td><td><i>the fewest</i> (+ plural countable noun)</td></tr>
+<tr><td><i>a little</i></td><td><i>less</i> (+ uncountable noun)</td><td><i>the least</i> (+ uncountable noun)</td></tr></table>
+<p>For plural or uncountable nouns we can compare quantities with <i>more</i> or <i>most</i>:</p><p class=ex>Today’s top sportspeople receive a lot <b>more money</b> than in the past.</p>
+<p>We can use <i>fewer</i> or <i>the fewest</i> with plural countable nouns, and <i>less</i> or <i>the least</i> with uncountable nouns:</p><p class=ex>25 years ago few 60-year-old men and even <b>fewer women</b> would have considered running a marathon.<br>There used to be <b>less information</b> available about fitness.</p>
+<h3>We can add emphasis</h3><ul><li>with <i>a lot / many + more / fewer</i> + plural countable noun:</li></ul><p class=ex>Increased sponsorship has given today’s athletes <b>many more opportunities</b> to succeed.</p>
+<ul><li>with <i>a lot / much + more / less</i> + uncountable noun:</li></ul><p class=ex>Today’s athletes need to do <b>much more training</b> than in the past.</p>
+<ul><li>by repeating <i>more/less/fewer</i>:</li></ul><p class=ex>So much in our society is about making <b>more and more money</b>.</p>
+<p>We can say something is the same or different using (<i>not</i>) <i>as many/much</i> + plural/uncountable noun (+ <i>as</i>):</p><p class=ex>There <b>aren’t as many people</b> doing sports at school (as there used to be).</p>
+<p>We can add more specific information about quantity by using <i>half, twice, three times</i> etc. with <i>as many/much ... as</i>:</p><p class=ex>In 2004 China won nearly <b>twice as many</b> silver medals <b>as</b> the US.<br>The US won more than <b>three times as many</b> medals <b>as</b> Great Britain.</p>
+<h3>Grammar extra: Comparing nouns</h3><p>We can compare how similar things are using <i>like, the same (as), similar to</i>:</p><p class=ex>Older athletes can achieve <b>the same</b> degree of physical improvement <b>as</b> those in their twenties and thirties.<br>He swims <b>like</b> a fish.<br>This film is <b>similar to</b> this director’s last one.</p>`},
+{id:'C1',type:'gap',t:'C1 · Comparative or superlative',q:'Fill in the gaps with the adjectives in the box in a comparative or superlative form.',bank:['brave','effective','exciting','expensive','fast','happy','good','heavy','small'],
+lines:['1 I travelled through Turkey by train because it was <u>the fastest</u> way to cross the country.',
+'2 Scientists have discovered a tiny bacteria living in the deep ocean. They say it is {2} living organism known to man.',
+'3 It is almost impossible to find a parking space in the city centre so it is {3} to travel by public transport if you need to go there.',
+'4 Pain killers are much {4} now so they reduce pain a lot faster than in the past.',
+'5 I like all kinds of sports, but I think football is {5} game to watch because it is so fast-moving.',
+'6 Nick did a bungee-jump, but I was too scared. He’s much {6} than me.',
+'7 I think people from the north of my country are {7} than people from the south. In the south no one ever seems to smile, but it’s the opposite in the north.',
+'8 The website listed hotels in a wide price range. I was amazed that the {8} ones cost over $500 a night.',
+'9 Weightlifters these days are lifting {9} weights than ever before.'],
+ans:{2:['the smallest'],3:['better'],4:['more effective'],5:['the most exciting'],6:['braver'],7:['happier'],8:['most expensive'],9:['heavier']}},
+{id:'C2',type:'gap',t:'C2 · Words in brackets',q:'Fill in the gaps with the words in brackets in a comparative or superlative form.',
+lines:['<b>Teacher:</b> What are 1 <u>the most obvious</u> <span class=hint>(obvious)</span> differences you have noticed between your own country and this one?',
+'<b>Student:</b> Oh there are so many! In my country people are 2 <u>not as interested</u> <span class=hint>(not/interested)</span> in foreigners as people here, who are much 3 {3} <span class=hint>(friendly)</span>. They are always kind and welcoming.',
+'Also, the weather is very different. It’s much 4 {4} <span class=hint>(hot)</span> in my country. It’s only autumn but I am feeling cold here already and it’s getting 5 {5} <span class=hint>(cold)</span> every day. I don’t like that.',
+'Then there’s the food. Your food is 6 {6} <span class=hint>(not/good)</span> ours. Our food is 7 {7} <span class=hint>(spicy)</span> and 8 {8} <span class=hint>(delicious)</span>. I think it’s 9 {9} <span class=hint>(good)</span> in the world! It is 10 {10} <span class=hint>(not/expensive)</span> either.',
+'I’ve also noticed that people here eat slightly 11 {11} <span class=hint>(early)</span> and they eat their meals 12 {12} <span class=hint>(quickly)</span>. And I am beginning to change my own habits too! 13 {13} <span class=hint>(long)</span> I stay here 14 {14} <span class=hint>(fast)</span> I seem to be eating.'],
+ans:{3:['friendlier','more friendly'],4:['hotter'],5:['colder','colder and colder'],6:['not as good as'],7:['spicier'],8:['more delicious'],9:['the best'],10:['not as expensive','not as expensive as'],11:['earlier'],12:['more quickly'],13:['the longer'],14:['the faster']}},
+{id:'C3',type:'gap',img:'c3-book-charts',t:'C3 · Describing charts',q:'Fill in the gaps in the model answer. Use one word in each gap.',
+lines:['The charts give information about the types of books that British men and women and different age groups buy. The initial impression from the charts is that women tend to buy <u>more</u> books than men overall, although they buy slightly {2} non-fiction books. The people that buy the {3} books are in the 45+ age group.',
+'Nearly 60% of women buy fiction, which is almost {4} as many as the number of men who choose this type of book. Nevertheless, most age groups buy {5} fiction books than non-fiction ones showing that non-fiction is generally {6} popular than fiction.',
+'The number of people buying fiction increases steadily from ages 16 to 45 with the {7} number of books, at just over 40% of the age group, bought by 16- to 24-year-olds and the {8} number, at just over 50%, bought by the over 45s.',
+'However, the pattern is different for non-fiction. The number of books bought by 25- to 44-year-olds is {9} lower than the number bought by 16- to 24-year-olds and those over 45. Just over 40% of 16- to 24-year-olds buy non-fiction, but this number is not {10} high as the number of people aged 45 and over buying non-fiction, at nearly 60%. Only 31% of 35- to 44-year-olds buy non-fiction, and the number of 24- to 34-year-olds is {11} lower at 28%.'],
+ans:{2:['fewer'],3:['most'],4:['twice'],5:['more'],6:['less'],7:['lowest','smallest'],8:['highest','biggest','largest','greatest'],9:['significantly','considerably','much','far'],10:['as'],11:['slightly','even']},sz:'s'},
+{id:'C4',type:'gap',t:'C4 · Correct the comparisons',q:'Are the underlined comparisons correct? Edit each phrase to correct it. Leave it unchanged if it is already right.',
+ref:`<p style="margin-top:0">The table shows the number of medals won by the top ten countries in the 2004 Olympic Games. The USA won 1 <u>the greatest</u> number of medals overall with a total of 103. They won 2 <u>more silver medals as gold</u> and 3 <u>more medals than</u> any other country in both categories. China had 4 <u>the second high</u> number of medals at 63, but unlike the USA, China won 5 <u>less silver medals than gold medals</u>. While Russia’s silver medal total was 6 <u>more good than</u> China’s, they did not do 7 <u>well as</u> China in the gold medals, winning just 27. In fact China had a 8 <u>more lower</u> overall medal total than Russia but, as the table is based on the number of gold medals won, they were placed second. Similarly, Germany was 9 <u>significantly successful</u> at winning medals than Japan, with a total of 48 compared to Japan’s 37, but because Japan won 10 <u>two more gold medals that</u> Germany they were ranked 11 <u>higher</u>. Great Britain gave 12 <u>the worse</u> performance in this group, winning only nine gold and nine silver medals.</p>${medT}`,
+lines:['2 {2}','3 {3}','4 {4}','5 {5}','6 {6}','7 {7}','8 {8}','9 {9}','10 {10}','11 {11}','12 {12}'],
+pre:{2:'more silver medals as gold',3:'more medals than',4:'the second high',5:'less silver medals than gold medals',6:'more good than',7:'well as',8:'more lower',9:'significantly successful',10:'two more gold medals that',11:'higher',12:'the worse'},
+ans:{2:['more silver medals than gold','more silver medals than gold medals'],3:['more medals than'],4:['the second highest'],5:['fewer silver medals than gold medals'],6:['better than'],7:['as well as'],8:['much lower','far lower','a lot lower'],9:['significantly more successful'],10:['two more gold medals than'],11:['higher'],12:['the worst']},sz:'w'},
+{id:'D1',type:'write',img:'d1-hours-chart',t:'D · Test practice: Academic Writing Task 1',q:'You should spend about 20 minutes on this task. Write at least 150 words.',note:`<b>The chart below shows the average hours worked per day by married men and women in paid employment.</b> Summarise the information by selecting and reporting the main features, and make comparisons where relevant.`,model:`<p><b>Test tip:</b> Make sure you read all of the information provided very carefully. Look at the statistical information you are given and choose the most important features. Look for data which is the same or similar and features which show important differences or changes.</p><p><b>Model answer</b></p><p>The chart provides a summary of the average number of hours married men and women work every day both inside and outside of the home. In both age groups shown, the total number of hours worked by married women is greater than the total number of hours worked by men. Whilst women aged 45 to 64 may work fewer hours inside the home, they work the greatest number of hours per day due to the extra hours of paid work that they do.</p><p>Men aged 25 to 44 spend only slightly more time working outside of the home than men aged 45 to 64, but this figure is significantly higher than the number of hours of paid work that women of the same age do.</p><p>Women in the 25 to 44 age group work almost as many hours inside the home as outside, and there is only a slight difference in the 45 to 64 age group. However, men work on average three times longer outside of the home than inside.</p>`},
+{id:'D2',type:'gap',t:'D · Test practice: grammar focus',q:'Academic Writing Task 1 (married men and women: hours worked per day). Fill in the gaps using the correct form of the words in brackets and any other words you need.',
+lines:['1 The total number of hours worked by married women with children is {1} <span class=hint>(great)</span> the total number of hours worked by men.',
+'2 Whilst women aged 45 to 64 may work {2a} <span class=hint>(few)</span> hours inside the home than younger women, overall they work {2b} <span class=hint>(great)</span> number of hours per day due to the extra hours of paid work that they do.',
+'3 Men aged 25 to 44 spend only {3a} <span class=hint>(slight/more)</span> time working outside the home than men aged 45 to 64, but this figure is {3b} <span class=hint>(significant/high)</span> the number of hours of paid work that women of the same age do.',
+'4 Women in the 25 to 44 age group work almost {4} <span class=hint>(many)</span> hours inside the home as outside, and there is only a slight difference in the 45 to 64 age group.',
+'5 However, men work on average {5} <span class=hint>(three/long)</span> outside the home than inside.'],
+ans:{'1':['greater than'],'2a':['fewer'],'2b':['the greatest'],'3a':['slightly more'],'3b':['significantly higher than'],'4':['as many'],'5':['three times longer']}},
+{id:'Finish',type:'finish',t:'Finish · Submit your answers',q:''}
+];
+const res={};let who={};let cur=0;
+function nav(){$('#nav').innerHTML=E.map((e,i)=>`<button class="tab${i==cur?' on':''}" onclick="go(${i})">${e.id}</button>`).join('')}
+function go(i){cur=i;nav();draw()}
+const R={
+sort:e=>e.items.map((s,i)=>`<div class=row id=r${i}><span class=t>${s}</span><button class="opt" data-g=g${i}>Young athletes</button><button class="opt" data-g=g${i}>Older athletes</button></div>`).join(''),
+tf:e=>e.items.map((it,i)=>`<div class=row id=r${i}><span class=t>${i+1} ${it[0]}</span><button class=opt data-g=g${i} data-v=1>True</button><button class=opt data-g=g${i} data-v=0>False</button><input type=text class=w placeholder="Correction (if false)"></div>`).join(''),
+multi:e=>`<p>${[1,2,3,4,5].map(n=>'').join('')}</p>`+e.qs.map((q,i)=>`<div class=row id=r${i}><span class=t style="flex-basis:100%">${q[0]}</span>${q[1].map(o=>`<button class=opt data-m=1 data-v="${o}">${o}</button>`).join('')}<span class=note hidden>${q[3]}</span></div>`).join(''),
+info:e=>`<div class=g>${e.html}</div>`,
+finish:e=>`<p>Check that you have done every exercise, then press <b>Submit answers</b>.</p><ul>${E.filter(x=>x.type!='info'&&x.type!='finish').map(x=>`<li>${x.id}: ${res[x.id]?'✅ done':'⬜ not done yet'}</li>`).join('')}</ul><button class=pri onclick=fin()>Submit answers</button><div id=out hidden><p>Press <b>Copy</b>, then paste your results into the WhatsApp chat with your teacher.</p><textarea class=o id=txt rows=12 readonly></textarea><div class=bar><button class=pri onclick=cp()>Copy</button><button onclick="window.open('https://wa.me/?text='+encodeURIComponent($('#txt').value))">Open WhatsApp</button><span id=cs></span></div></div>`,
+write:e=>`<div class=ref>${e.note}</div><textarea id=w rows=10 style="width:100%;font:inherit;padding:10px;border:2px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);box-sizing:border-box"></textarea><div class=ref id=model hidden>${e.model}</div>`,
+gap:e=>(e.ref?`<div class=ref>${e.ref}</div>`:'')+e.lines.map(l=>`<p class=ln>${l.replace(/\{(\w+)\}/g,(m,k)=>`<input type=text data-k="${k}" autocomplete=off autocapitalize=off spellcheck=false class="${e.sz=='w'?'w':''}" value="${(e.pre&&e.pre[k])||''}">`)}</p>`).join('')};
+function draw(){const e=E[cur];$('#main').innerHTML=`<h2>${e.t}</h2><p class=q>${e.q}</p>`+(e.img?`<img src="${e.img}.png" alt="">`:'')+(e.audio?`<audio controls src="track-11.mp3"></audio>`:'')+(e.bank?`<div class=bank>${e.bank.map(w=>`<span>${w}</span>`).join('')}</div>`:'')+(e.id=='A4'?`<div class=ref>1 Older athletes are getting faster and fitter. 2 Runners aged 50+ are speeding up less rapidly than young runners. 3 …run on average two minutes faster each year. 4 Older athletes are less likely to achieve their peak fitness than younger athletes. 5 People grow weaker because they are less active than when they were younger.</div>`:'')+R[e.type](e)+(['info','finish'].includes(e.type)?'':`<div class=bar><button class=pri onclick=sub()>Submit</button><button onclick=draw()>Try again</button><span id=sc></span></div>`)}
+document.addEventListener('click',ev=>{const b=ev.target.closest('.opt');if(!b)return;if(b.dataset.m){b.classList.toggle('on');return}$$(`.opt[data-g="${b.dataset.g}"]`).forEach(x=>x.classList.remove('on'));b.classList.add('on')});
+function sub(){const e=E[cur];let ok=0,n=0,bad=[];
+if(e.type=='write'){const w=$('#w').value.trim().split(/\s+/).filter(Boolean).length;$('#sc').textContent=w+' words';res[e.id]={w,text:$('#w').value.trim()};$('#model').hidden=false;return}
+if(e.type=='sort'){res[e.id]={done:1};$('#sc').textContent='Answers saved – now listen and check (Ex. 2).';return}
+if(e.type=='gap'){$$('#main input[data-k]').forEach(inp=>{inp.nextElementSibling?.classList.contains('fix')&&inp.nextElementSibling.remove();const a=e.ans[inp.dataset.k],g=a.some(x=>nz(x)==nz(inp.value));n++;g&&ok++;!g&&bad.push(inp.dataset.k+': '+(inp.value.trim()||'–'));inp.className=(g?'ok':'bad')+(inp.classList.contains('w')?' w':'');if(!g)inp.insertAdjacentHTML('afterend',`<span class=fix>✓ ${a[0]}</span>`)})}
+if(e.type=='tf')e.items.forEach((it,i)=>{const r=$('#r'+i),s=r.querySelector('.opt.on'),g=s&&s.dataset.v==it[1];n++;g&&ok++;r.className='row '+(g?'ok':'bad');r.querySelectorAll('.opt').forEach(o=>{o.classList.toggle('right',o.dataset.v==it[1]);});if(!it[1]&&!r.querySelector('.note'))r.insertAdjacentHTML('beforeend',`<span class=note>✓ ${it[2]}</span>`)});
+if(e.type=='multi')e.qs.forEach((q,i)=>{const r=$('#r'+i),sel=[...r.querySelectorAll('.opt.on')].map(x=>x.dataset.v),g=sel.length==q[2].length&&q[2].every(x=>sel.includes(x));n++;g&&ok++;r.className='row '+(g?'ok':'bad');r.querySelectorAll('.opt').forEach(o=>{o.classList.toggle('right',q[2].includes(o.dataset.v));o.classList.toggle('wrong',o.classList.contains('on')&&!q[2].includes(o.dataset.v))});r.querySelector('.note').hidden=false});
+res[e.id]={ok,n,bad};$('#sc').textContent=`Score: ${ok} / ${n}`}
+function fin(){let t=`Unit 11 – Comparing things\nName: ${who.n}\nGroup: ${who.g}\nDate: ${new Date().toLocaleDateString()}\n`;
+E.forEach(x=>{if(x.type=='info'||x.type=='finish')return;const r=res[x.id];t+='\n'+x.id+': '+(!r?'not done':r.text!==undefined?r.w+' words\n'+r.text:r.n?r.ok+'/'+r.n+(r.bad.length?' | wrong: '+r.bad.join('; '):''):'done')});
+$('#txt').value=t;$('#out').hidden=false;$('#cs').textContent=''}
+function cp(){const t=$('#txt'),d=()=>$('#cs').textContent='Copied ✓ Now paste it into WhatsApp';t.select();t.setSelectionRange(0,99999);try{navigator.clipboard.writeText(t.value).then(d,()=>{document.execCommand('copy');d()})}catch(x){document.execCommand('copy');d()}}
+function begin(){const n=$('#sn').value.trim(),g=$('#sg').value.trim();if(!n||!g){$('#se').textContent='Please enter your name and group number.';return}who={n,g};$('.sub').textContent=n+' · Group '+g;go(0)}
+$('#main').innerHTML=`<div class=start><h2>Welcome</h2><p>Enter your name and group number to begin.</p><label for=sn>Your name</label><input type=text id=sn autocomplete=name><label for=sg>Group number</label><input type=text id=sg><p id=se class=fix style="color:var(--bad)"></p><button class=pri onclick=begin()>Start</button></div>`;
+</script></body></html>
